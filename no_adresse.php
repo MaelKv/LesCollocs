@@ -10,16 +10,16 @@ $collection = $db->customers;
 
 //firstname,lastname,email,address,city,cp,country,latitude,longitude
 
-$Query = array('adress' => "");
+$Query = array('address' => "");
 
-$cursor = $collection->find();
+$cursor = $collection->find($Query);
 //({"address": ''});
 // , $or "city": "", $or "cp": "", $or "country": "", $or "latitude": "", $or "longitude": "");
 
 foreach ($cursor as $document) {
-      if($document["address"] == ""){
+      //if($document["address"] == ""){
         echo $document["firstname"] . "-" . $document["lastname"] . "<br />";
-      }
+      //}
    }
 
 ?>
