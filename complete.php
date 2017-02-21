@@ -1,3 +1,4 @@
+<?php include("header.php") ?>
 <?php
 
 // connexion
@@ -17,9 +18,8 @@ $cursor = $collection->find($Query);
 // , $or "city": "", $or "cp": "", $or "country": "", $or "latitude": "", $or "longitude": "");
 
 foreach ($cursor as $document) {
-      //if($document["address"] == ""){
         echo $document["firstname"] . "-" . $document["lastname"] . "<br />";
-      //}
    }
 
 ?>
+<?php include("footer.php") ?>
