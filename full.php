@@ -10,11 +10,11 @@
   // sélectionne une collection (analogue à une table de base de données relationnelle)
   $collection = $db->customers;
 
-  //firstname,lastname,email,address,city,cp,country,latitude,longitude
-
   $cursor = $collection->find();
   //({"address": ''});
   // , $or "city": "", $or "cp": "", $or "country": "", $or "latitude": "", $or "longitude": "");
+
+  $count = $cursor->count();
 
   ?>
   <table class="ui black table">
@@ -37,31 +37,44 @@
   <?php foreach ($cursor as $document) { ?>
 
       <tr>
-        <td><?= $document["firstname"] ?></td>
-        <td><?= $document["lastname"] ?></td>
-        <td><?= $document["email"] ?></td>
-        <td><?= $document["address"] ?></td>
-        <td><?= $document["city"] ?></td>
-        <td><?= $document["cp"] ?></td>
-        <td><?= $document["country"] ?></td>
-        <td><?= $document["latitude"] ?></td>
-        <td><?= $document["_id"] ?></td>
+        <td><?= (!empty($document["firstname"])) ? $document["firstname"] : '<i class ="warning sign red icon"></icon>' ?></td>
+        <td><?= (!empty($document["lastname"])) ? $document["lastname"] : '<i class ="warning sign red icon"></icon>' ?></td>
+        <td><?= (!empty($document["email"])) ? $document["email"] : '<i class ="warning sign red icon"></icon>' ?></td>
+        <td><?= (!empty($document["address"])) ? $document["address"] : '<i class ="warning sign red icon"></icon>' ?></td>
+        <td><?= (!empty($document["city"])) ? $document["city"] : '<i class ="warning sign red icon"></icon>' ?></td>
+        <td><?= (!empty($document["cp"])) ? $document["cp"] : '<i class ="warning sign red icon"></icon>' ?></td>
+        <td><?= (!empty($document["country"])) ? $document["country"] : '<i class ="warning sign red icon"></icon>' ?></td>
+        <td><?= (!empty($document["latitude"])) ? $document["latitude"] : '<i class ="warning sign red icon"></icon>' ?></td>
+        <td><?= (!empty($document["longitude"])) ? $document["longitude"] : '<i class ="warning sign red icon"></icon>' ?></td>
         <td>
-          <button class="ui icon button">
-            <a href="form.php?user=<?= $document['_id'] ?>">
+          <a href="form.php?user=<?= $document['_id'] ?>">
+            <button class="ui icon button">
               <i class="configure icon"></i>
-            </a>
-          </button>
+            </button>
+          </a>
         </td>
         <td>
-          <button class="ui icon button">
-            <i class="remove icon"></i>
-          </button>
+          <a href="delete.php?id=<?= $document['_id'] ?>">
+            <button class="ui icon button">
+              <i class="remove icon"></i>
+            </button>
+          </a>
         </td>
       </tr>
 
      <?php } ?>
    </tbody>
   </table>
+
+  <a href="form.php">
+    <button class="ui button">
+      Add
+    </button>
+  </a>
+
+  <div class="ui label">
+    <i class="ordered list icon"></i> <?= $count ?>
+  </div>
+
 </div>
 <?php include("footer.php") ?>
