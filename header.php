@@ -10,6 +10,8 @@
   <title>Le talent ne s'achète pas</title>
 
   <link rel="stylesheet" type="text/css" href="css/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="Semantic-UI-master/dist/components/icon.min.css">
+
 
   <script src="js/jquery-3.1.1.min.js"></script>
   <script src="js/semantic.min.js"></script>
